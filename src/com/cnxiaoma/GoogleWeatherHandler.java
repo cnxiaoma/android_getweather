@@ -69,6 +69,12 @@ public class GoogleWeatherHandler extends DefaultHandler {
     	  if (qName.equals("temp_c")) {
     		  this.setCurrentTemp(atts.getValue("data"));
     		  } 
+         if (qName.equals("humidity")) {
+             this.setCurrentHum(atts.getValue("data"));
+         }
+         if (qName.equals("wind_condition")) {
+             this.setCurrentWind(atts.getValue("data"));
+         }			  
      }
 
      @Override

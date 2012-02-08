@@ -35,23 +35,35 @@ public class Android_getweatherActivity extends Activity implements View.OnClick
     }
     
     public void updateWeather(){
-	    URL url;
+	   	URL url;
 	    SAXParserFactory spf = SAXParserFactory.newInstance();
-	    btn.setText("updateWeather");
- 		//	SAXParser sp = spf.newSAXParser();
- 		//	url = new URL("http://www.google.com/ig/api?weather=shanghai&hl=zh-cn");
+        try {
+ 			SAXParser sp = spf.newSAXParser();
+ 			url = new URL("http://www.google.com/ig/api?weather=shanghai&hl=zh-cn");
 
-         //    XMLReader xr = sp.getXMLReader();
+            XMLReader xr = sp.getXMLReader();
 
-          //   GoogleWeatherHandler gwh = new GoogleWeatherHandler();
-          //   xr.setContentHandler(gwh);
+            GoogleWeatherHandler gwh = new GoogleWeatherHandler();
+            xr.setContentHandler(gwh);
              
-          //   InputStreamReader utf8In=new InputStreamReader(url.openStream(),"utf-8");
+            InputStreamReader utf8In=new InputStreamReader(url.openStream(),"gb2312");
             
-          //   xr.parse(new InputSource(utf8In));
-             
-	  //  	btn.setText("w" + gwh.getCurrentCity() + "");
+            xr.parse(new InputSource(utf8In));
 
-
-    }
+                   
+	    	btn.setText("魔都当前的气温：摄氏" + gwh.getCurrentTemp() + "度，\n\r"+ gwh.getCurrentHum() +"，"+gwh.getCurrentWind()+"。");
+        } catch (ParserConfigurationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SAXException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+	}
 }
