@@ -4,10 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
-import java.util.Date;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -39,41 +36,22 @@ public class Android_getweatherActivity extends Activity implements View.OnClick
     
     public void updateWeather(){
 	    URL url;
-	  //  btn.setText("updateWeather");
-		try {
-			url = new URL("http://www.google.com/ig/api?weather=shanghai&hl=zh-cn");
+	    SAXParserFactory spf = SAXParserFactory.newInstance();
+	    btn.setText("updateWeather");
+ 		//	SAXParser sp = spf.newSAXParser();
+ 		//	url = new URL("http://www.google.com/ig/api?weather=shanghai&hl=zh-cn");
 
-            SAXParserFactory spf = SAXParserFactory.newInstance();
-            SAXParser sp = spf.newSAXParser();
+         //    XMLReader xr = sp.getXMLReader();
 
-            /* 从SAXParser得到XMLReader*/
-            XMLReader xr = sp.getXMLReader();
-
-            /*
-             * 创建GoogleWeatherHandler，以便解析XML内容
-             */
-            GoogleWeatherHandler gwh = new GoogleWeatherHandler();
-            xr.setContentHandler(gwh);
-
-            /* 解析XML文件内容 */
-            xr.parse(new InputSource(url.openStream()) );
+          //   GoogleWeatherHandler gwh = new GoogleWeatherHandler();
+          //   xr.setContentHandler(gwh);
+             
+          //   InputStreamReader utf8In=new InputStreamReader(url.openStream(),"utf-8");
             
-			
-	    	btn.setText("魔都当前温度：" + gwh.getCurrentTemp() + "摄氏度");
-		    
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+          //   xr.parse(new InputSource(utf8In));
+             
+	  //  	btn.setText("w" + gwh.getCurrentCity() + "");
+
 
     }
 }
